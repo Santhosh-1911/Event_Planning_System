@@ -1,0 +1,287 @@
+CREATE TABLE Events (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_name VARCHAR(100) NOT NULL,
+    event_date DATE NOT NULL,
+    location VARCHAR(100)
+);
+
+CREATE TABLE Participants (
+    participant_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);
+
+CREATE TABLE EventSchedules (
+    schedule_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_id INT,
+    participant_id INT,
+    registration_date DATE NOT NULL,
+    FOREIGN KEY (event_id) REFERENCES Events(event_id),
+    FOREIGN KEY (participant_id) REFERENCES Participants(participant_id)
+);
+CREATE TABLE Payment(
+payment_id int auto_increment primary key,
+mode_of_transfer varchar(100),
+participant_id int,
+payment_date date not null,
+foreign key(participant_id) references Participants(participant_id));
+
+INSERT INTO events (event_name, event_date, location) VALUES
+('Spring Music Festival', '2025-04-12', 'Central Park, New York'),
+('Tech Conference 2025', '2025-05-23', 'Los Angeles Convention Center, Los Angeles'),
+('Food and Wine Expo', '2025-06-15', 'Miami Beach Convention Center, Miami'),
+('Art Gala 2025', '2025-07-10', 'Louvre Museum, Paris'),
+('Yoga Retreat', '2025-08-05', 'Bali, Indonesia'),
+('Summer Dance Party', '2025-09-19', 'Beachside Pavilion, Malibu'),
+('Blockchain Summit', '2025-10-01', 'Grand Hyatt, San Francisco'),
+('Film Festival', '2025-11-10', 'Trafalgar Square, London'),
+('Holiday Parade', '2025-12-25', '5th Avenue, New York'),
+('Winter Wonderland', '2025-12-31', 'Central Park, New York');
+
+INSERT INTO participants (first_name, last_name, email) VALUES
+('John', 'Doe', 'john.doe@example.com'),
+('Jane', 'Smith', 'jane.smith@example.com'),
+('Michael', 'Brown', 'michael.brown@example.com'),
+('Emily', 'Davis', 'emily.davis@example.com'),
+('David', 'Wilson', 'david.wilson@example.com'),
+('Sophia', 'Martinez', 'sophia.martinez@example.com'),
+('James', 'Anderson', 'james.anderson@example.com'),
+('Olivia', 'Taylor', 'olivia.taylor@example.com'),
+('Daniel', 'Thomas', 'daniel.thomas@example.com'),
+('Emma', 'Harris', 'emma.harris@example.com'),
+('William', 'White', 'william.white@example.com'),
+('Ava', 'Clark', 'ava.clark@example.com'),
+('Alexander', 'Lewis', 'alexander.lewis@example.com'),
+('Mia', 'Walker', 'mia.walker@example.com'),
+('Ethan', 'Hall', 'ethan.hall@example.com'),
+('Charlotte', 'Allen', 'charlotte.allen@example.com'),
+('Benjamin', 'Young', 'benjamin.young@example.com'),
+('Isabella', 'King', 'isabella.king@example.com'),
+('Mason', 'Wright', 'mason.wright@example.com'),
+('Amelia', 'Scott', 'amelia.scott@example.com'),
+('Lucas', 'Green', 'lucas.green@example.com'),
+('Harper', 'Adams', 'harper.adams@example.com'),
+('Henry', 'Baker', 'henry.baker@example.com'),
+('Evelyn', 'Gonzalez', 'evelyn.gonzalez@example.com'),
+('Jack', 'Nelson', 'jack.nelson@example.com'),
+('Liam', 'Carter', 'liam.carter@example.com'),
+('Grace', 'Mitchell', 'grace.mitchell@example.com'),
+('Noah', 'Perez', 'noah.perez@example.com'),
+('Lily', 'Roberts', 'lily.roberts@example.com'),
+('Samuel', 'Phillips', 'samuel.phillips@example.com'),
+('Chloe', 'Evans', 'chloe.evans@example.com'),
+('Matthew', 'Campbell', 'matthew.campbell@example.com'),
+('Zoe', 'Sanchez', 'zoe.sanchez@example.com'),
+('Ryan', 'Morris', 'ryan.morris@example.com'),
+('Ella', 'Rogers', 'ella.rogers@example.com'),
+('Nathan', 'Reed', 'nathan.reed@example.com'),
+('Madison', 'Cook', 'madison.cook@example.com'),
+('Dylan', 'Morgan', 'dylan.morgan@example.com'),
+('Hannah', 'Bell', 'hannah.bell@example.com');
+INSERT INTO eventschedules (event_id, participant_id, registration_date) VALUES
+(1, 1, '2025-01-10'),
+(1, 2, '2025-01-11'),
+(1, 3, '2025-01-12'),
+(1, 4, '2025-01-13'),
+(1, 5, '2025-01-14'),
+(2, 6, '2025-01-15'),
+(2, 7, '2025-01-16'),
+(2, 8, '2025-01-17'),
+(2, 9, '2025-01-18'),
+(2, 10, '2025-01-19'),
+(3, 11, '2025-02-01'),
+(3, 12, '2025-02-02'),
+(3, 13, '2025-02-03'),
+(3, 14, '2025-02-04'),
+(3, 15, '2025-02-05'),
+(4, 16, '2025-02-06'),
+(4, 17, '2025-02-07'),
+(4, 18, '2025-02-08'),
+(4, 19, '2025-02-09'),
+(4, 20, '2025-02-10'),
+(5, 21, '2025-02-11'),
+(5, 22, '2025-02-12'),
+(5, 23, '2025-02-13'),
+(5, 24, '2025-02-14'),
+(5, 25, '2025-02-15'),
+(6, 26, '2025-03-01'),
+(6, 27, '2025-03-02'),
+(6, 28, '2025-03-03'),
+(7, 29, '2025-03-04'),
+(7, 30, '2025-03-05'),
+(8, 31, '2025-03-06'),
+(8, 32, '2025-03-07'),
+(8, 33, '2025-03-08'),
+(9, 34, '2025-03-09'),
+(9, 35, '2025-03-10'),
+(9, 36, '2025-03-11'),
+(10, 37, '2025-03-12'),
+(10, 38, '2025-03-13');
+
+INSERT INTO payment(mode_of_transfer,participant_id,
+payment_date) VALUES
+( 'cash',1, '2025-01-10'),
+( 'cash',2, '2025-01-11'),
+('online', 3, '2025-01-12'),
+( 'online',4, '2025-01-13'),
+( 'cash',5, '2025-01-14'),
+('online', 6, '2025-01-15'),
+( 'online',7, '2025-01-16'),
+('online', 8, '2025-01-17'),
+('online', 9, '2025-01-18'),
+( 'online',10, '2025-01-19'),
+('online', 11, '2025-02-01'),
+( 'online',12, '2025-02-02'),
+('cash', 13, '2025-02-03'),
+('cash', 14, '2025-02-04'),
+('cash', 15, '2025-02-05'),
+( 'cash',16, '2025-02-06'),
+( 'online',17, '2025-02-07'),
+( 'online',18, '2025-02-08'),
+('online', 19, '2025-02-09'),
+('online', 20, '2025-02-10'),
+('online', 21, '2025-02-11'),
+( 'online',22, '2025-02-12'),
+( 'online',23, '2025-02-13'),
+( 'online',24, '2025-02-14'),
+('online', 25, '2025-02-15'),
+('online', 26, '2025-03-01'),
+( 'online',27, '2025-03-02'),
+( 'online',28, '2025-03-03'),
+('online', 29, '2025-03-04'),
+( 'online',30, '2025-03-05'),
+( 'online',31, '2025-03-06'),
+( 'online',32, '2025-03-07'),
+( 'cash',33, '2025-03-08'),
+( 'cash',34, '2025-03-09'),
+( 'cash',35, '2025-03-10'),
+('cash', 36, '2025-03-11'),
+('cash', 37, '2025-03-12'),
+( 'cash',38, '2025-03-13');
+
+DELIMITER $$
+
+CREATE PROCEDURE GetAllEvents()
+BEGIN
+    SELECT event_name, event_date, location FROM Events;
+END $$
+
+DELIMITER ;
+DELIMITER $$
+
+CREATE PROCEDURE GetOnlinePayments()
+BEGIN
+    SELECT 
+        Participants.first_name, 
+        Participants.last_name, 
+        Participants.email, 
+        Payment.mode_of_transfer, 
+        Payment.payment_date 
+    FROM Participants
+    INNER JOIN Payment ON Participants.participant_id = Payment.participant_id
+    WHERE Payment.mode_of_transfer = 'online';
+END $$
+
+DELIMITER ;
+DELIMITER $$
+
+CREATE PROCEDURE GetParticipantCountPerEvent()
+BEGIN
+    SELECT 
+        Events.event_name, 
+        Events.event_date, 
+        Events.location, 
+        COUNT(EventSchedules.participant_id) AS total_participants
+    FROM Events
+    LEFT JOIN EventSchedules ON Events.event_id = EventSchedules.event_id
+    GROUP BY Events.event_id, Events.event_name, Events.event_date, Events.location
+    ORDER BY Events.event_date;
+END $$
+
+DELIMITER ;
+DELIMITER $$
+
+CREATE PROCEDURE GetParticipantsForEvent(IN event_name_param VARCHAR(100))
+BEGIN
+    SELECT 
+        Participants.first_name, 
+        Participants.last_name, 
+        Participants.email, 
+        Events.event_name, 
+        EventSchedules.registration_date
+    FROM Participants
+    INNER JOIN EventSchedules ON Participants.participant_id = EventSchedules.participant_id
+    INNER JOIN Events ON EventSchedules.event_id = Events.event_id
+    WHERE Events.event_name = event_name_param;
+END $$
+
+DELIMITER ;
+DELIMITER $$
+
+CREATE PROCEDURE GetPaymentDetailsForParticipants()
+BEGIN
+    SELECT 
+        Participants.first_name, 
+        Participants.last_name, 
+        Participants.email, 
+        Payment.mode_of_transfer, 
+        Payment.payment_date
+    FROM Participants
+    INNER JOIN Payment ON Participants.participant_id = Payment.participant_id
+    ORDER BY Payment.payment_date;
+END $$
+
+DELIMITER ;
+DELIMITER $$
+
+CREATE PROCEDURE GetTotalCashPayments()
+BEGIN
+    SELECT 
+        COUNT(*) AS total_cash_payments
+    FROM Payment
+    WHERE mode_of_transfer = 'cash';
+END $$
+
+DELIMITER ;
+DELIMITER $$
+
+CREATE PROCEDURE GetParticipantsPaidAfterMarch1()
+BEGIN
+    SELECT 
+        Participants.first_name, 
+        Participants.last_name, 
+        Participants.email, 
+        Payment.mode_of_transfer, 
+        Payment.payment_date
+    FROM Participants
+    INNER JOIN Payment ON Participants.participant_id = Payment.participant_id
+    WHERE Payment.payment_date > '2025-03-01'
+    ORDER BY Payment.payment_date;
+END $$
+
+DELIMITER ;
+CREATE VIEW MostPopularPaymentMode AS
+SELECT 
+    mode_of_transfer, 
+    COUNT(mode_of_transfer) AS payment_count
+FROM Payment
+GROUP BY mode_of_transfer
+ORDER BY payment_count DESC
+LIMIT 1;
+CREATE VIEW MostPopularEvent AS
+SELECT 
+    Events.event_id, 
+    Events.event_name, 
+    Events.event_date, 
+    Events.location, 
+    COUNT(EventSchedules.participant_id) AS participant_count
+FROM Events
+INNER JOIN EventSchedules ON Events.event_id = EventSchedules.event_id
+GROUP BY Events.event_id, Events.event_name, Events.event_date, Events.location
+ORDER BY participant_count DESC
+LIMIT 1;
+CREATE VIEW AvgParticipantsPerEvent AS
+SELECT 
+    (SELECT COUNT(participant_id) FROM EventSchedules) / 
+    (SELECT COUNT(event_id) FROM Events) AS avg_participants;
